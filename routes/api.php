@@ -7,7 +7,12 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\StoreController;
+use App\Http\Controllers\Api\SubCategoryController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ImageController;
+use App\Http\Controllers\Api\FavoriteController;
+use App\Http\Controllers\Api\ProductReleaseController;
+use App\Http\Controllers\Api\CartController;
 
 Route::middleware('auth:sanctum')->group(function (){
     /** AUTHENTICATION */
@@ -32,6 +37,17 @@ Route::middleware('auth:sanctum')->group(function (){
 
     /** PRODUCT */
     Route::post('/product', [ProductController::class, 'store']);
+
+    /** FAVORITE */
+    Route::get('/favorites', [FavoriteController::class, 'index']);
+    Route::get('/favorite/{id}',[FavoriteController::class, 'show']);
+    Route::delete('/favorite/{id}',[FavoriteController::class, 'destroy']);
+    Route::post('/favorite',[FavoriteController::class, 'store']);
+
+    /** Cart */
+    Route::get('/cart',[CartController::class,'index']);
+    Route::post('/cart',[CartController::class,'store']);
+    Route::delete('/remove-cart/{id}',[CartController::class,'destroy']);
 });
 
 /** Public route */
@@ -40,6 +56,17 @@ Route::get('/banners',[BannerController::class,'index']);
 Route::get('/stores',[StoreController::class, 'index']);
 Route::get('/store/{id}',[StoreController::class, 'show']);
 Route::get('/products',[ProductController::class, 'index']);
+Route::get('/product/{id}',[ProductController::class, 'show']);
+// Get size and colors of products
+Route::get('/release',[ProductReleaseController::class, 'index']);
+Route::get('/release/{id}',[ProductReleaseController::class, 'show']); // id product not id product release
+
+
+Route::get('/sub_categories', [SubCategoryController::class, 'index']);
+
+
+Route::get('/images',[ImageController::class, 'index']);
+Route::get('/images/{id}',[ImageController::class, 'show']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);

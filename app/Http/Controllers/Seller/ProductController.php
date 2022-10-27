@@ -75,16 +75,35 @@ class ProductController extends Controller
         $category->update(['numProducts' => $currentProduct + 1]);
 
 
+
+        foreach($request->id_size as $id_size) {
+            $release = new ProductRelease();
+            $release->id_product = $nextID;
+            $release->id_size = $id_size;
+            $release->save();       
+        }
+
+        foreach($request->id_color as $id_color) {  
+            $release = new ProductRelease();
+            $release->id_product = $nextID;
+            $release->id_color = $id_color;
+            $release->save();       
+        }
+
+
         /** Size and color */
         if(isset($request->id_size) && isset($request->id_color)){
             foreach($request->id_size as $id_size) {
-                foreach($request->id_color as $id_color) {  
-                    $release = new ProductRelease();
-                    $release->id_product = $nextID;
-                    $release->id_size = $id_size;
-                    $release->id_color = $id_color;
-                    $release->save();       
-                }
+                $release = new ProductRelease();
+                $release->id_product = $nextID;
+                $release->id_size = $id_size;
+                $release->save();       
+            }
+            foreach($request->id_color as $id_color) {  
+                $release = new ProductRelease();
+                $release->id_product = $nextID;
+                $release->id_color = $id_color;
+                $release->save();       
             } 
         }elseif(isset($request->id_size) && !isset($request->id_color)){
             foreach($request->id_size as $id_size) {
@@ -103,6 +122,8 @@ class ProductController extends Controller
         }else{
             $release = new ProductRelease();
             $release->id_product = $nextID;
+            $release->id_size = NULL;
+            $release->id_color = NULL;
             $release->save(); 
         }
         /** End size and color */

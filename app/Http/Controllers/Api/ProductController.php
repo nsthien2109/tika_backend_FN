@@ -13,7 +13,10 @@ class ProductController extends Controller
 {
     /** Show items  */
     public function index(){
-        $products = Product::join('category','products.id_category', '=', 'category.id_category')->join('brand','products.id_brand', '=', 'brand.id_brand')->get();
+        $products = Product::join('category','products.id_category', '=', 'category.id_category')
+        ->join('brand','products.id_brand', '=', 'brand.id_brand')
+        ->join('sub_category','products.id_sub_category', '=', 'sub_category.id_sub_category')
+        ->paginate(15);
         if (!$products) return response()->json(['message' => 'Product not found']);
         return response()->json([
             'message' => 'Success',
@@ -74,7 +77,18 @@ class ProductController extends Controller
     }
 
     /** Show item by id */
-    public function show($id){}
+    public function show($id){
+        $product = Product::where('id_product', $id)
+        ->join('category','products.id_category', '=', 'category.id_category')
+        ->join('brand','products.id_brand', '=', 'brand.id_brand')
+        ->join('sub_category','products.id_sub_category', '=', 'sub_category.id_sub_category')
+        ->first();
+        if (!$product) return response()->json(['message' => 'Product not found']);
+        return response()->json([
+            'message' => 'Success',
+            'data' => $product
+        ]);
+    }
 
     /** Redirect to update page (apply in webserver not for api) */
     public function edit($id){}

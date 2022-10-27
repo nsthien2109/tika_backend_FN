@@ -30,6 +30,11 @@ class Product extends Model
     protected $primaryKey = 'id_product';
     protected $table = 'products';
 
+    //new add
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 
     public function store(){
         return $this->belongsTo('App\Models\Store', 'id_store');
