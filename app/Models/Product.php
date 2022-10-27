@@ -22,6 +22,7 @@ class Product extends Model
         'productStatus',
         'id_store',
         'id_category',
+        'id_sub_category',
         'id_brand'
     ];
 
@@ -40,6 +41,10 @@ class Product extends Model
 
     public function category(){
         return $this->belongsTo('App\Models\Category', 'id_category');
+    }
+
+    public function subCategory(){
+        return $this->belongsTo('App\Models\SubCategory', 'id_sub_category');
     }
 
     public function images(){

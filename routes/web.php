@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UnitController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\SubCategoryController;
 
 use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\ProductReleaseController;
@@ -44,6 +45,16 @@ Route::group([
     Route::get('delete-category/{id}',[CategoryController::class, 'destroy']);
     Route::get('edit-category-page-{id}',[CategoryController::class, 'show']);
     Route::post('update-category',[CategoryController::class, 'update']);
+
+
+    /** Sub Category  */
+    Route::get('sub_categories', [SubCategoryController::class, 'index']);
+    Route::get('add-sub-category-page',[SubCategoryController::class, 'create']);
+    Route::post('add-sub_category',[SubCategoryController::class, 'store']);
+    Route::get('delete-sub-category/{id}',[SubCategoryController::class, 'destroy']);
+    Route::get('edit-sub-category-page-{id}',[SubCategoryController::class, 'show']);
+    Route::post('update-sub-category',[SubCategoryController::class, 'update']);
+    Route::get('change-status-sub-{id}',[SubCategoryController::class, 'changeStatus']);
 
     /** Banner  */
     Route::get('banners', [BannerController::class, 'index']);
@@ -141,6 +152,7 @@ Route::group([
     Route::post('update-product',[ProductController::class, 'update']);
     Route::get('delete-product/{id}',[ProductController::class, 'destroy']);
     Route::get('change-status-product-{id}',[ProductController::class, 'changeStatus']);
+    Route::post('select_category',[ProductController::class , 'select_subcategory']);
 
     /** Product release */
     Route::get('products-release', [ProductReleaseController::class, 'index']);

@@ -83,6 +83,7 @@
                 <li class="treeview"><a href={{URL::to('admin/banners')}}><i class="icon icon-presentation-12 pink-text s-18"></i>Banner</a></li>
                 <li class="treeview"><a href={{URL::to('admin/stores')}}><i class="icon icon-store_mall_directory cyan-text s-18"></i>Stores</a></li>
                 <li class="treeview"><a href={{URL::to('admin/categories')}}><i class="icon icon-clear_all deep-purple-text s-18"></i>Categories</a></li>
+                <li class="treeview"><a href={{URL::to('admin/sub_categories')}}><i class="icon icon-subject lime-text s-18"></i>Sub Category</a></li>
                 <li class="treeview"><a href={{URL::to('admin/brands')}}><i class="icon icon-star-3 deep-orange-text s-18"></i>Brand</a></li>
                 <li class="treeview"><a href={{URL::to('admin/address')}}><i class="icon icon-address-card-o black-text s-18"></i>User Address</a></li>
                 <li class="treeview"><a href={{URL::to('admin/coupons')}}><i class="icon icon-ticket teal-text s-18"></i>Coupons</a></li>

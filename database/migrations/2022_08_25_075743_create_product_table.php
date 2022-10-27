@@ -27,6 +27,7 @@ class CreateProductTable extends Migration
             $table->integer('productStatus');
             $table->integer('id_store');
             $table->integer('id_category');
+            $table->integer('id_sub_category');
             $table->integer('id_brand');
             $table->timestamps();
         });

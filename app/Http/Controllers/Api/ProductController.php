@@ -21,9 +21,6 @@ class ProductController extends Controller
         ]);
     }
 
-    /** Redirect to create page (apply in webserver not for api) */
-    public function create(){}
-
     /** Create a new item logic  */
     public function store(Request $request){
         $user = $request->user();

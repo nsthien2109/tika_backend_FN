@@ -20,7 +20,6 @@ class AuthController extends Controller
             'email' => 'required|email',
             'phone' => 'min:9|max:13|required',
             'password' => 'required|min:6|max:50',
-            'role' => 'required',
         ]);
 
         $checkEmail = User::where('email', $request->email)->first();
@@ -35,7 +34,7 @@ class AuthController extends Controller
             'email'=> $request->email,
             'phone' => $request->phone,
             'password' => Hash::make($request->password),
-            'role' => $request->role,
+            'role' => 2, // 2 is role of the user
         ]);
         return response()->json(['message' => 'Register Successfully'], 200);
     }
@@ -46,13 +45,11 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:6|max:50',
         ]);
-
         $user = User::where('email', $request->email)->first();
         if(!$user) return response()->json(['message' => 'User Not Found'], 404);
         if(!Hash::check($request->password, $user->password)) return response()->json(['message' => "Opps Wrong password"], 404);
-
+        if($user->role != 2) return response()->json(['message' => "Your information is not valid"]);
         $token = $user->createToken('authToken')->plainTextToken;
-
         return response()->json([
             'message' => 'Login Successfully',
             'data' => $user,

@@ -40,7 +40,7 @@
                             <div class="col-md-6 mb-3">
                                 <label for="brand">Brand</label>
                                 <select id="brand" class="custom-select form-control" name="id_brand" required>
-                                    <option value="">Select Product Category</option>
+                                    <option value="">Select Product Brand</option>
                                     @foreach($brands as $brand)
                                     <option value={{$brand->id_brand}}>{{$brand->brandName}}</option>
                                     @endforeach
@@ -54,8 +54,8 @@
                             <div class="col-md-6 mb-3">
                                 <label for="category">Category</label>
                                 <!--<input type="text" class="form-control"  placeholder="Mobile Phones" required>-->
-                                <select id="category" class="custom-select form-control" name="id_category" required>
-                                    <option value="">Select Product Category</option>
+                                <select class="custom-select form-control category choose" name="id_category" id="category" required>
+                                    <option value="">Select Category</option>
                                     @foreach($categories as $category)
                                     <option value={{$category->id_category}}>{{$category->categoryName}}</option>
                                     @endforeach
@@ -64,7 +64,17 @@
                                     Please provide a valid category.
                                 </div>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-3">
+                                <label for="category">Sub Category</label>
+                                <!--<input type="text" class="form-control"  placeholder="Mobile Phones" required>-->
+                                <select id="subcategory" class="custom-select form-control subcategory" name="id_sub" >
+                                    <option value="">Select Sub Category</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please provide a valid category.
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-6">
                                 <label for="validationCustom04">Price</label>
                                 <input type="text" class="form-control" name="productPrice" id="validationCustom04" placeholder="$"
                                        required>
@@ -72,7 +82,7 @@
                                     Please provide a valid price.
                                 </div>
                             </div>
-                            <div class="col-md-3 mb-3">
+                            <div class="col-md-6 mb-6">
                                 <label for="amount">Amount</label>
                                 <input type="text" class="form-control" name="productAmount" id="amount" required>
                                 <div class="invalid-feedback">
@@ -103,7 +113,7 @@
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <div class="card-title">Select Size</div>
-                                <select class="select2 custom-select form-control" name="id_size[]" multiple="multiple" required>
+                                <select class="select2 custom-select form-control" name="id_size[]" multiple="multiple" >
                                 @foreach($sizes as $size)
                                 <option value={{$size->id_size}}>{{$size->sizeName}}</option>
                                 @endforeach
@@ -114,7 +124,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <div class="card-title">Select Colors</div>
-                                <select class="select2 custom-select form-control" name="id_color[]" multiple="multiple" required>
+                                <select class="select2 custom-select form-control" name="id_color[]" multiple="multiple" >
                                 @foreach($colors as $color)
                                 <option value={{$color->id_color}}>{{$color->colorName}}</option>
                                 @endforeach
@@ -183,6 +193,7 @@
             </form>
         </div>
     </div>
+    
     <?php
         $message = Session::get('message');
         if (isset($message)) {

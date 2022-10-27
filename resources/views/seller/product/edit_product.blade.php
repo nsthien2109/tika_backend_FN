@@ -44,7 +44,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="brand">Brand</label>
-                                <select id="brand" class="custom-select form-control" name="id_brand" required>
+                                <select id="brand" class="custom-select form-control" name="id_brand" disabled required>
                                     <option value="">Select Product Category</option>
                                     @foreach($brands as $brand)
                                         @if($brand->id_brand == $product->id_brand)
@@ -63,7 +63,7 @@
                             <div class="col-md-6 mb-3">
                                 <label for="category">Category</label>
                                 <!--<input type="text" class="form-control"  placeholder="Mobile Phones" required>-->
-                                <select id="category" class="custom-select form-control" name="id_category" required>
+                                <select id="category" class="custom-select form-control" name="id_category" disabled required>
                                     <option value="">Select Product Category</option>
                                     @foreach($categories as $category)
                                         @if($category->id_category == $product->id_category)

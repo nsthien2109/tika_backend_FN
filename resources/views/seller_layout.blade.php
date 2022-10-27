@@ -208,7 +208,29 @@
     </aside>
 </div>
 <script src="{{asset('assets/js/app.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.choose').on('change',function(){
+            var action = $(this).attr('id');
+            var id_category = $(this).val();
+            var _token =  $('input[name="_token"]').val();
+            var result = '';
+            if (action == 'category') {
+                result = 'subcategory';
+            }
+             $.ajax({
+                url : '{{url('/seller/select_category')}}',
+                 method : 'POST',
+                data:{action:action,id_category:id_category,_token:_token},
+                success:function(data){
+                    console.log(data);
+                     $('#'+result).html(data);
+                 }
+             })
+        });
 
+    })
+</script>
 </body>
 
 </html>

@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Store;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Models\Size;
 use App\Models\Color;
 use App\Models\Images;
@@ -28,9 +29,11 @@ class ProductController extends Controller
     public function create(){
         $brands = Brand::all();
         $categories = Category::all();
+        $subCategories = SubCategory::all();
         $sizes = Size::all();
         $colors = Color::all();
-        return view('seller.product.add_product',['categories' => $categories, 'brands' => $brands,'sizes' => $sizes, 'colors' => $colors]);
+        return view('seller.product.add_product',
+        ['categories' => $categories, 'brands' => $brands,'sizes' => $sizes, 'colors' => $colors, 'subCategories' => $subCategories]);
     }
 
     public function store(Request $request){
@@ -62,6 +65,7 @@ class ProductController extends Controller
         $product->id_store = $store->id_store;
         $product->id_brand = $request->id_brand;
         $product->id_category = $request->id_category;
+        $product->id_sub_category = $request->id_sub;
         $product->discount = $request->discount ?? 0;
         $nextID = $this->getNextID();
 
@@ -72,7 +76,7 @@ class ProductController extends Controller
 
 
         /** Size and color */
-        if(sizeof($request->id_size) > 0 && sizeof($request->id_color) > 0){
+        if(isset($request->id_size) && isset($request->id_color)){
             foreach($request->id_size as $id_size) {
                 foreach($request->id_color as $id_color) {  
                     $release = new ProductRelease();
@@ -82,14 +86,24 @@ class ProductController extends Controller
                     $release->save();       
                 }
             } 
-        }elseif(sizeof($request->id_size) > 0 && sizeof($request->id_color) == 0){
-            \Session::put('message',"Please select image for this product !");
-            return Redirect::to('/seller/add-product-page');
-        }elseif(sizeof($request->id_size) == 0 && sizeof($request->id_color) > 0){
-            \Session::put('message',"Please select image for this product !");
-            return Redirect::to('/seller/add-product-page');
+        }elseif(isset($request->id_size) && !isset($request->id_color)){
+            foreach($request->id_size as $id_size) {
+                    $release = new ProductRelease();
+                    $release->id_product = $nextID;
+                    $release->id_size = $id_size;
+                    $release->save();       
+                }
+        }elseif(!isset($request->id_size) && isset($request->id_color)){
+            foreach($request->id_color as $id_color) {  
+                $release = new ProductRelease();
+                $release->id_product = $nextID;
+                $release->id_color = $id_color;
+                $release->save();       
+            }
         }else{
-            \Session::put('message','Something went wrong.');
+            $release = new ProductRelease();
+            $release->id_product = $nextID;
+            $release->save(); 
         }
         /** End size and color */
 
@@ -275,8 +289,6 @@ class ProductController extends Controller
     }
 
 
-
-
     public function convert_name($str) {
 		$str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
 		$str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
@@ -304,4 +316,20 @@ class ProductController extends Controller
         }
         return $latest->id_product + 1;
     }
+
+    public function select_subcategory(Request $request)
+    {
+      $data = $request->all();
+      if ($data['action']) {
+        $out_put ='';
+        if ($data['action'] == "category") {
+          $sub_category = SubCategory::where('id_category', $data['id_category'])->get();
+          $out_put .= '<option value="">Select sub category</option>';
+          foreach ($sub_category as $key => $sub) {
+          $out_put .= '<option value="'.$sub->id_sub_category.'">'.$sub->subCategoryName.'</option>';
+        }
+        }
+    }
+    echo $out_put;
+}
 }
