@@ -13,12 +13,16 @@ use App\Http\Controllers\Api\ImageController;
 use App\Http\Controllers\Api\FavoriteController;
 use App\Http\Controllers\Api\ProductReleaseController;
 use App\Http\Controllers\Api\CartController;
+use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\CouponController;
+use App\Http\Controllers\Api\FlashSaleController;
 
 Route::middleware('auth:sanctum')->group(function (){
     /** AUTHENTICATION */
     Route::get('/user', [AuthController::class, 'user']);
     Route::resource('users', UserController::class);
     Route::get('/logout', [AuthController::class, 'logout']);
+    Route::post('/user-update', [AuthController::class, 'update']);
     /** CATEGORY */
     Route::post('/category', [CategoryController::class, 'store']);
     Route::delete('/category/{id}', [CategoryController::class, 'destroy']);
@@ -48,6 +52,13 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::get('/cart',[CartController::class,'index']);
     Route::post('/cart',[CartController::class,'store']);
     Route::delete('/remove-cart/{id}',[CartController::class,'destroy']);
+
+    /** Address */
+    Route::get('/address',[AddressController::class,'index']);
+    Route::post('/address',[AddressController::class,'store']);
+
+    /** Coupon */
+    Route::post('/check-coupon',[CouponController::class,'check_coupon']);
 });
 
 /** Public route */
@@ -60,6 +71,10 @@ Route::get('/product/{id}',[ProductController::class, 'show']);
 // Get size and colors of products
 Route::get('/release',[ProductReleaseController::class, 'index']);
 Route::get('/release/{id}',[ProductReleaseController::class, 'show']); // id product not id product release
+
+// Flash sale
+Route::get('/flashsale',[FlashSaleController::class, 'index']);
+
 
 
 Route::get('/sub_categories', [SubCategoryController::class, 'index']);

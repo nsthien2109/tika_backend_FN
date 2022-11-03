@@ -86,6 +86,4 @@ class CouponController extends Controller
         \Session::put('message','Delete '.$coupon->couponName.' coupon Successfully');
          return Redirect::to('admin/coupons');
     }
-
-
 }

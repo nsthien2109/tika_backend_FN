@@ -87,7 +87,7 @@
                 <li class="treeview"><a href={{URL::to('admin/brands')}}><i class="icon icon-star-3 deep-orange-text s-18"></i>Brand</a></li>
                 <li class="treeview"><a href={{URL::to('admin/address')}}><i class="icon icon-address-card-o black-text s-18"></i>User Address</a></li>
                 <li class="treeview"><a href={{URL::to('admin/coupons')}}><i class="icon icon-ticket teal-text s-18"></i>Coupons</a></li>
-                <li class="treeview"><a href={{URL::to('admin/flashdeal')}}><i class="icon icon-flash amber-text s-18"></i>Flash Deal</a></li>
+                <li class="treeview"><a href={{URL::to('admin/flashsale-frame')}}><i class="icon icon-flash amber-text s-18"></i>FlashSale Time Frame</a></li>
                 <li class="treeview"><a href={{URL::to('admin/deals')}}><i class="icon icon-view_day light-green-text s-18"></i>Deal of Day</a></li>
                 <li class="treeview"><a href={{URL::to('admin/notify')}}><i class="icon icon-notifications_active red-text s-18"></i>Push Notification</a></li>
                 <li class="treeview"><a href={{URL::to('admin/orders')}}><i class="icon icon-clipboard-list deep-orange-text s-18"></i>Orders</a></li>

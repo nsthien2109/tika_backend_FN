@@ -80,7 +80,7 @@
                 <li class="treeview"><a href={{URL::to('seller/products-release')}}><i class="icon icon icon-newspaper-o deep-purple-text s-18"></i>Products Release</a></li>
                 <!-- Banner navigation -->
                 <li class="treeview"><a href={{URL::to('seller/coupons')}}><i class="icon icon-ticket teal-text s-18"></i>Coupons</a></li>
-                <li class="treeview"><a href={{URL::to('seller/flashdeal')}}><i class="icon icon-flash amber-text s-18"></i>Flash Deal</a></li>
+                <li class="treeview"><a href={{URL::to('seller/flashsale_product')}}><i class="icon icon-flash amber-text s-18"></i>Flash Deal</a></li>
                 <li class="treeview"><a href={{URL::to('seller/deals')}}><i class="icon icon-view_day light-green-text s-18"></i>Deal of Day</a></li>
                 <li class="treeview"><a href={{URL::to('seller/orders')}}><i class="icon icon-clipboard-list deep-orange-text s-18"></i>Orders</a></li>
                 <li class="treeview"><a href={{URL::to('seller/comments')}}><i class="icon icon-rate_review yellow-text s-18"></i>Comments</a></li>

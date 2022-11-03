@@ -58,6 +58,30 @@ class AuthController extends Controller
         ], 200);
     }
 
+    public function update(Request $request)
+    {
+        $user = $request->user();
+        if($user['role'] != 2) return response()->json(['message' => 'You are not allowed to this action.']);
+        $user = User::find($user->id);
+        if($user){
+            if(isset($request->currentPassword) && isset($request->newPassword)){
+                if (Hash::check($request->currentPassword, $user->password)) {
+                    $user->update([
+                        'password'=> Hash::make($request->newPassword),
+                    ]); 
+                }
+            }
+            $user->update($request->all());
+            $token = $user->createToken('authToken')->plainTextToken;
+            return response()->json([
+                'message' => 'Success',
+                'data' => $user,
+                'accessToken' => $token,
+                'type' => 'Bearer'
+            ], 200);
+        }
+    }
+
     public function user(Request $request){
         $user = $request->user();
         $store = Store::where('id_user', $user->id)->first();
@@ -69,8 +93,7 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request){
-        // auth()->user()->tokens()->delete();
-        $request->user()->currentAccessToken()->delete();
+        auth()->user()->tokens()->delete();
         return response()->json(['message' => 'Logouted'], 200);
     }
 }

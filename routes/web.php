@@ -12,10 +12,12 @@ use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AddressController;
 use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\SubCategoryController;
+use App\Http\Controllers\Admin\FlashSaleFrameController;
 
 use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\ProductReleaseController;
 use App\Http\Controllers\Seller\CouponStoreController;
+use App\Http\Controllers\Seller\FlashSaleProductController;
 
 Route::get('/login-page', [AuthController::class,'index']);
 Route::post('/login',[AuthController::class,'login']);
@@ -110,22 +112,15 @@ Route::group([
     Route::get('edit-coupon-page-{id}',[CouponController::class, 'show']);
     Route::post('update-coupon',[CouponController::class, 'update']);
     Route::get('delete-coupon/{id}',[CouponController::class, 'destroy']);
+
+    /** FlashSale Time Frame */
+    Route::get('flashsale-frame',[FlashSaleFrameController::class,'index']);
+    Route::get('add-flash-frame-page',[FlashSaleFrameController::class,'create']);
+    Route::post('add-flashsale-frame',[FlashSaleFrameController::class,'store']);
+    Route::get('edit-flash-frame-page-{id}',[FlashSaleFrameController::class, 'show']);
+    Route::post('update-frame',[FlashSaleFrameController::class, 'update']);
+    Route::get('delete-frame/{id}',[FlashSaleFrameController::class, 'destroy']);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -165,6 +160,14 @@ Route::group([
     Route::get('edit-coupon-page-{id}',[CouponStoreController::class, 'show']);
     Route::post('update-coupon',[CouponStoreController::class, 'update']);
     Route::get('delete-coupon/{id}',[CouponStoreController::class, 'destroy']);
+
+    /**Flash sale product */
+    Route::get('flashsale_product', [FlashSaleProductController::class, 'index']);
+    Route::get('add-flashsale-product-page',[FlashSaleProductController::class, 'create']);
+    Route::post('add-flashsale-product',[FlashSaleProductController::class, 'store']);
+    Route::get('edit-flashsale-product-page-{id}',[FlashSaleProductController::class, 'show']);
+    Route::post('update-flashsale-product',[FlashSaleProductController::class, 'update']);
+    Route::get('delete-flashsale-product/{id}',[FlashSaleProductController::class, 'destroy']);
 });
 
 ?>
