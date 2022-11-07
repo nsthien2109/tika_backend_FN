@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminHomeController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -14,10 +15,14 @@ use App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\FlashSaleFrameController;
 
+use App\Http\Controllers\Seller\HomeController;
+use App\Http\Controllers\Seller\InfomationController;
 use App\Http\Controllers\Seller\ProductController;
 use App\Http\Controllers\Seller\ProductReleaseController;
 use App\Http\Controllers\Seller\CouponStoreController;
 use App\Http\Controllers\Seller\FlashSaleProductController;
+use App\Http\Controllers\Seller\OrderController;
+use App\Http\Controllers\Seller\CommentController;
 
 Route::get('/login-page', [AuthController::class,'index']);
 Route::post('/login',[AuthController::class,'login']);
@@ -29,9 +34,7 @@ Route::group([
     'prefix' => 'admin',
     'middleware' => 'adminLoginCheck'
 ],function () {
-    Route::get('/', function () {
-        return view('pages.home.home');
-    });
+    Route::get('/', [AdminHomeController::class, 'index']);
         /** User */
     Route::get('users', [UserController::class, 'index']);
     Route::get('add-user-page',[UserController::class, 'create']);
@@ -135,9 +138,8 @@ Route::group([
     'prefix' => 'seller',
     'middleware' => 'sellerLoginCheck'
 ],function () {
-    Route::get('/', function () {
-        return view('seller.home.home');
-    });
+    /** Home  */
+    Route::get('/', [HomeController::class, 'index']);
 
     /** Product  */
     Route::get('products', [ProductController::class, 'index']);
@@ -168,6 +170,21 @@ Route::group([
     Route::get('edit-flashsale-product-page-{id}',[FlashSaleProductController::class, 'show']);
     Route::post('update-flashsale-product',[FlashSaleProductController::class, 'update']);
     Route::get('delete-flashsale-product/{id}',[FlashSaleProductController::class, 'destroy']);
+
+    /**Order */
+    Route::get('orders', [OrderController::class, 'index']);
+    Route::get('order/{id}', [OrderController::class, 'update']);
+    Route::get('delete-order/{id}', [OrderController::class, 'destroy']);
+
+    /**Comments */
+    Route::get('comments', [CommentController::class, 'index']);
+    Route::get('delete-comment/{id}', [OrderController::class, 'destroy']);
+
+    /** Infomation */
+    Route::get('infomation', [InfomationController::class, 'index']);
+    Route::post('update-profile',[InfomationController::class, 'updateProfile']);
+    Route::post('update-store',[InfomationController::class, 'updateStore']);
+
 });
 
 ?>

@@ -17,17 +17,23 @@ class FlashSaleProductController extends Controller
     public function refresh() {
         $flashsale_all = FlashSaleProduct::join('flashsale_frame', 'flashsale_frame.id_flashsale_frame', '=','flashsale_product.id_flashsale_frame')->get();      
         $now = Carbon::now();
-        foreach ($flashsale_all as $key => $flashsale) {
-            $dateStart = Carbon::createFromFormat('Y-m-d H:i:s', $flashsale->sale_day.' '.$flashsale->start,'Asia/Ho_Chi_Minh');
-            $dateEnd = Carbon::createFromFormat('Y-m-d H:i:s', $flashsale->sale_day.' '.$flashsale->end,'Asia/Ho_Chi_Minh');
-            if($dateEnd->lt($now) == true){
-                $product_sale = Product::where('id_product', '=', $flashsale->id_product)->first();
-                $product_sale->update(['discount' => 0.0]);
-                $flashsale->delete();
-            }
-            if($dateStart->gte($now) == true){
-                $product_sale = Product::where('id_product', '=', $flashsale->id_product)->first();
-                $product_sale->update(['discount' => $flashsale->salePercent]);
+        if(isset($flashsale_all)){
+            foreach ($flashsale_all as $key => $flashsale) {
+                $dateStart = Carbon::createFromFormat('Y-m-d H:i:s', $flashsale->sale_day.' '.$flashsale->start,'Asia/Ho_Chi_Minh');
+                $dateEnd = Carbon::createFromFormat('Y-m-d H:i:s', $flashsale->sale_day.' '.$flashsale->end,'Asia/Ho_Chi_Minh');
+                if($dateEnd->lt($now) == true){
+                    $product_sale = Product::where('id_product', '=', $flashsale->id_product)->first();
+                    if(isset($product_sale)){
+                        $product_sale->update(['discount' => 0.0]);
+                    }
+                    $flashsale->delete();
+                }
+                if($dateStart->gte($now) == true){
+                    $product_sale = Product::where('id_product', '=', $flashsale->id_product)->first();
+                    if(isset($product_sale)){
+                        $product_sale->update(['discount' => $flashsale->salePercent]);
+                    }
+                }
             }
         }
     }

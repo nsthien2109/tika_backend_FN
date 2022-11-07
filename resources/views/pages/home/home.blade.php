@@ -12,7 +12,7 @@
                                 <div><i class="icon-timer s-18"></i></div>
                             </div>
                             <div class="text-center">
-                                <div class="s-48 my-3 font-weight-lighter">68</div>
+                                <div class="s-48 my-3 font-weight-lighter">{{$countOrders}}</div>
                                 Orders
                             </div>
 
@@ -26,7 +26,7 @@
                                 <div><i class="icon-user-circle-o s-18"></i></div>
                             </div>
                             <div class="text-center">
-                                <div class="s-48 my-3 font-weight-lighter">170</div>
+                                <div class="s-48 my-3 font-weight-lighter">{{$countUsers}}</div>
                                 Users
                             </div>
 
@@ -40,7 +40,7 @@
                                 <div><i class="icon-package s-18"></i></div>
                             </div>
                             <div class="text-center">
-                                <div class="s-48 my-3 font-weight-lighter">35</div>
+                                <div class="s-48 my-3 font-weight-lighter">{{$countProducts}}</div>
                                 Products
                             </div>
 
@@ -51,10 +51,10 @@
                     <div class="card no-b mb-3">
                         <div class="card-body">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div><i class="icon-user-times s-18"></i></div>
+                                <div><i class="icon-branding_watermark s-18"></i></div>
                             </div>
                             <div class="text-center">
-                                <div class="s-48 my-3 font-weight-lighter">95</div>
+                                <div class="s-48 my-3 font-weight-lighter">{{$countBrands}}</div>
                                 Brand
                             </div>
 
@@ -67,10 +67,10 @@
                         <div class="card no-b mb-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div><i class="icon-package s-18"></i></div>
+                                    <div><i class="icon-clipboard-list2 s-18"></i></div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="s-48 my-3 font-weight-lighter">35</div>
+                                    <div class="s-48 my-3 font-weight-lighter">{{$countCategories}}</div>
                                     Categories
                                 </div>
 
@@ -81,11 +81,11 @@
                         <div class="card no-b mb-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div><i class="icon-user-times s-18"></i></div>
-\                                </div>
+                                    <div><i class="icon-check-square-o s-18"></i></div>
+                               </div>
                                 <div class="text-center">
-                                    <div class="s-48 my-3 font-weight-lighter">95</div>
-                                    Address
+                                    <div class="s-48 my-3 font-weight-lighter">{{$countSubCategory}}</div>
+                                    Sub Category
                                 </div>
 
                             </div>
@@ -95,11 +95,11 @@
                         <div class="card no-b mb-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div><i class="icon-timer s-18"></i></div>
+                                    <div><i class="icon-store_mall_directory s-18"></i></div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="s-48 my-3 font-weight-lighter">68</div>
-                                    Notifications
+                                    <div class="s-48 my-3 font-weight-lighter">{{$countStores}}</div>
+                                    Store
                                 </div>
 
                             </div>
@@ -109,10 +109,10 @@
                         <div class="card no-b mb-3">
                             <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div><i class="icon-user-circle-o s-18"></i></div>
+                                    <div><i class="icon-comment s-18"></i></div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="s-48 my-3 font-weight-lighter">170</div>
+                                    <div class="s-48 my-3 font-weight-lighter">{{$countComments}}</div>
                                     Comments
                                 </div>
 
@@ -121,81 +121,41 @@
                     </div>
 
                 </div>
-            </div>
-        </div>
 
-        <div class="card no-b">
-            <div class="card-body">
-                <div class="row my-3 no-gutters">
-                    <div class="col-md-3">
-                        <h1>Tasks</h1>
-                        Currently assigned tasks to team.
-                    </div>
-                    <div class="col-md-9">
-                        <div class="row">
-                            <div class="col-md-3">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card no-b mb-3">
+                            <div class="card-body">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <div class="mb-3">
-                                        <h6>New Layout</h6>
-                                        <small>75% Completed</small>
-                                    </div>
-                                    <figure class="avatar">
-                                        <img src="assets/img/dummy/u12.png" alt=""> </figure>
+                                    <div><i class="icon-heart s-18"></i></div>
                                 </div>
-                                <div class="progress progress-xs mb-3">
-                                    <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="text-center">
+                                    <div class="s-48 my-3 font-weight-lighter">{{$countFavorites}}</div>
+                                    Favorite
                                 </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="mb-3">
-                                        <h6>New Layout</h6>
-                                        <small>75% Completed</small>
-                                    </div>
-                                    <figure class="avatar">
-                                        <img src="assets/img/dummy/u2.png" alt=""> </figure>
-                                </div>
-                                <div class="progress progress-xs mb-3">
-                                    <div class="progress-bar bg-indigo" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="mb-3">
-                                        <h6>New Layout</h6>
-                                        <small>75% Completed</small>
-                                    </div>
-                                   <div class="avatar-group">
-                                       <figure class="avatar">
-                                           <img src="assets/img/dummy/u4.png" alt=""> </figure>
-                                       <figure class="avatar">
-                                           <img src="assets/img/dummy/u11.png" alt=""> </figure>
-                                       <figure class="avatar">
-                                           <img src="assets/img/dummy/u1.png" alt=""> </figure>
-                                   </div>
-                                </div>
-                                <div class="progress progress-xs mb-3">
-                                    <div class="progress-bar yellow" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="mb-3">
-                                        <h6>New Layout</h6>
-                                        <small>75% Completed</small>
-                                    </div>
-                                    <figure class="avatar">
-                                        <img src="assets/img/dummy/u5.png" alt=""> </figure>
-                                </div>
-                                <div class="progress progress-xs mb-3">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
+
                             </div>
                         </div>
                     </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="card no-b mb-3">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div><i class="icon-star s-18"></i></div>
+                               </div>
+                                <div class="text-center">
+                                    <div class="s-48 my-3 font-weight-lighter">{{$countCoupons}}</div>
+                                    Coupon
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
+                </div>
             </div>
         </div>
+
+      
     </div>
 </div>
 @endsection

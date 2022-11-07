@@ -15,14 +15,20 @@ class CreateOrderTable extends Migration
     {
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id_order');
-            $table->integer('id_cart')->nullable();
-            $table->integer('id_product');
-            $table->integer('quantity');
-            $table->integer('id_color')->nullable();
-            $table->integer('id_size')->nullable();
             $table->integer('id_user');
-            $table->integer('id_address');
-            $table->double('total');
+            $table->string('addressProvince');
+            $table->string('addressDistrict');
+            $table->string('addressCommune');
+            $table->string('addressSpecific');
+            $table->string('orderEmail');
+            $table->string('orderPhone');
+            $table->string('orderName');
+            $table->string('orderCoupon')->nullable();
+            $table->double('orderDiscount')->nullable();
+            $table->double('feeship');
+            $table->double('orderTotal');
+            $table->string('paymentMethod');
+            $table->text('orderNotes')->nullable();
             $table->timestamps();
         });
     }

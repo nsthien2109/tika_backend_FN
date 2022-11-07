@@ -5,7 +5,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="assets/img/basic/favicon.ico" type="image/x-icon">
-    <title>Paper</title>
+    <title>Login to Tika System</title>
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/app.css">
 </head>
@@ -15,9 +15,6 @@
     <div id="primary" class="blue4 p-t-b-100 height-full responsive-phone">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <img src="assets/img/icon/icon-plane.png" alt="">
-                </div>
                 <div class="col-lg-6 p-t-100">
                     <div class="text-white">
                         <h1>Welcome Back</h1>

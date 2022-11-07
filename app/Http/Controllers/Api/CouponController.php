@@ -15,23 +15,19 @@ class CouponController extends Controller
         if(isset($coupon)){
             $now = Carbon::now('Asia/Ho_Chi_Minh');
             if($coupon->start_time > $now){
-                return response()->json([
-                    'message' => 'The discount code is not valid yet',
-                    'st' => $coupon->start_time,
-                    'noew' => $now->toDateTimeString()
-                ]); 
+                return response()->json(['message' => 'The discount code is not valid yet'],404); 
             }
             if($coupon->end_time < $now){
                 return response()->json([
                     'message' => 'This discount code has expired',
-                ]); 
+                ],404); 
             }
             return response()->json([
                 'message' => 'Success',
                 'data' => $coupon
             ]);
         }else{
-            return response()->json(['message' => 'Discount code does not exist']);
+            return response()->json(['message' => 'Discount code does not exist'],404);
         }
     }
 }

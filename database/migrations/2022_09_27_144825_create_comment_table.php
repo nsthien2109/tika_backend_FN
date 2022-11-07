@@ -17,6 +17,7 @@ class CreateCommentTable extends Migration
             $table->increments('id_comment');
             $table->integer('id_product');
             $table->integer('id_user');
+            $table->double('star_rate');
             $table->string('commentContent');
             $table->timestamps();
         });

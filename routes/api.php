@@ -16,6 +16,9 @@ use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\CouponController;
 use App\Http\Controllers\Api\FlashSaleController;
+use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\CommentController;
+
 
 Route::middleware('auth:sanctum')->group(function (){
     /** AUTHENTICATION */
@@ -59,6 +62,14 @@ Route::middleware('auth:sanctum')->group(function (){
 
     /** Coupon */
     Route::post('/check-coupon',[CouponController::class,'check_coupon']);
+
+    /** Checkout - Order */
+    Route::get('/order',[OrderController::class,'index']);
+    Route::post('/order',[OrderController::class,'store']);
+
+    /** Comment */
+    Route::post('/comment',[CommentController::class,'store']);
+
 });
 
 /** Public route */
@@ -75,6 +86,7 @@ Route::get('/release/{id}',[ProductReleaseController::class, 'show']); // id pro
 // Flash sale
 Route::get('/flashsale',[FlashSaleController::class, 'index']);
 
+Route::get('/comments/{id}', [CommentController::class, 'show']);
 
 
 Route::get('/sub_categories', [SubCategoryController::class, 'index']);
