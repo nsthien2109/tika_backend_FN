@@ -55,9 +55,10 @@ class CartController extends Controller
     public function destroy(Request $request ,$id) // id_cart 
     {
         $user = $request->user();
-        if($user->role != 2) return response()->json(['message' => 'You are not allowed to delete this favorite.']);
-        $cart = Cart::find($id);
+        $cart = Cart::where('id_cart','=',$id)->where('id_user',$user->id)->first();
         $cart->delete();
-        return response()->json(['message' => 'Success'], 200);
+        return response()->json(
+            ['message' => 'Success','data' => $cart],
+        200);
     }
 }

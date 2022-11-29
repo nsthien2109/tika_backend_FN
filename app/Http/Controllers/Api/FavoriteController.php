@@ -50,9 +50,8 @@ class FavoriteController extends Controller
     public function destroy(Request $request, $id)
     {
         $user = $request->user();
-        if($user->role != 2) return response()->json(['message' => 'You are not allowed to delete this favorite.']);
-        $favorite = Favorite::find($id);
+        $favorite = Favorite::where('id_favorite','=',$id)->where('id_user',$user->id)->first();
         $favorite->delete();
-        return response()->json(['message' => 'Success'], 200);
+        return response()->json(['message' => 'Success', 'data' => $favorite], 200);
     }
 }

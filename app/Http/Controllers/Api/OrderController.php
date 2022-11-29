@@ -95,9 +95,20 @@ class OrderController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function show(Request $request,$id)
     {
-        //
+        $user = $request->user();
+        $orders = OrderDetail::join('order', 'order.id_order', '=','order_detail.id_order')
+        ->join('products', 'products.id_product' , '=' , 'order_detail.id_product')
+        ->where('order_detail.id_order','=', $id)
+        // ->where('order.id_user','=', $user->id)
+        ->select('order.*', 'order_detail.*', 'products.productImage','products.productName')
+        ->get();
+
+        return response()->json([
+            'message' => 'Success',
+            'data' => $orders
+        ], 200);
     }
 
     public function edit($id)

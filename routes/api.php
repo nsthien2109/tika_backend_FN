@@ -65,6 +65,7 @@ Route::middleware('auth:sanctum')->group(function (){
 
     /** Checkout - Order */
     Route::get('/order',[OrderController::class,'index']);
+    Route::get('/order/{id}',[OrderController::class,'show']);
     Route::post('/order',[OrderController::class,'store']);
 
     /** Comment */
@@ -79,6 +80,8 @@ Route::get('/stores',[StoreController::class, 'index']);
 Route::get('/store/{id}',[StoreController::class, 'show']);
 Route::get('/products',[ProductController::class, 'index']);
 Route::get('/product/{id}',[ProductController::class, 'show']);
+Route::get('/products_category/{id}',[ProductController::class, 'product_category']); // id_category
+Route::post('/search_product',[ProductController::class, 'product_search']); // id_category
 // Get size and colors of products
 Route::get('/release',[ProductReleaseController::class, 'index']);
 Route::get('/release/{id}',[ProductReleaseController::class, 'show']); // id product not id product release

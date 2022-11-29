@@ -16,13 +16,44 @@ class ProductController extends Controller
         $products = Product::join('category','products.id_category', '=', 'category.id_category')
         ->join('brand','products.id_brand', '=', 'brand.id_brand')
         ->join('sub_category','products.id_sub_category', '=', 'sub_category.id_sub_category')
-        ->paginate(15);
+        ->paginate(6);
         if (!$products) return response()->json(['message' => 'Product not found']);
         return response()->json([
             'message' => 'Success',
             'data' => $products
         ]);
     }
+
+    /** Show product where -> id_category */
+    public function product_category($id_category){ // id_category
+        $products = Product::join('category','products.id_category', '=', 'category.id_category')
+        ->join('brand','products.id_brand', '=', 'brand.id_brand')
+        ->join('sub_category','products.id_sub_category', '=', 'sub_category.id_sub_category')
+        ->where('products.id_category', $id_category)
+        ->paginate(6);
+        if (!$products) return response()->json(['message' => 'Product not found']);
+        return response()->json([
+            'message' => 'Success',
+            'data' => $products
+        ]);
+    }
+
+
+    /** Show product where -> id_category */
+    public function product_search(Request $request){ // id_category
+        $products = Product::join('category','products.id_category', '=', 'category.id_category')
+        ->join('brand','products.id_brand', '=', 'brand.id_brand')
+        ->join('sub_category','products.id_sub_category', '=', 'sub_category.id_sub_category')
+        ->where('products.productName','LIKE', '%'.$request->productName.'%')
+        ->paginate(5);
+        if (!$products) return response()->json(['message' => 'Product not found']);
+        return response()->json([
+            'message' => 'Success',
+            'data' => $products
+        ]);
+    }
+
+
 
     /** Create a new item logic  */
     public function store(Request $request){

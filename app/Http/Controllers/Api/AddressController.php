@@ -11,11 +11,14 @@ class AddressController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $address = Address::where('id_user', $user->id)->first();
+        $address = Address::where('id_user', $user->id)
+        ->join('users','users.id','=','address.id_user')
+        ->select('address.*','users.firstName','users.lastName', 'users.phone')
+        ->first();
         return response()->json([
             'message' => 'Success',
             'data' => $address
-        ]);
+        ],200);
     }
 
     public function store(Request $request)

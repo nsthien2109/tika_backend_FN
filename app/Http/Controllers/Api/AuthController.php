@@ -36,7 +36,15 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
             'role' => 2, // 2 is role of the user
         ]);
-        return response()->json(['message' => 'Register Successfully'], 200);
+
+        $token = $newUser->createToken('authToken')->plainTextToken;
+        
+        return response()->json([
+            'message' => 'Register Successfully',
+            'data' => $newUser,
+            'accessToken' => $token,
+            'type' => 'Bearer'
+        ], 200);
     }
 
     public function login(Request $request){
@@ -84,12 +92,9 @@ class AuthController extends Controller
 
     public function user(Request $request){
         $user = $request->user();
-        $store = Store::where('id_user', $user->id)->first();
         return response()->json([
-            "user" => $user,
-            "store" => $store
-        ]);
-
+            "data" => $user,
+        ],200);
     }
 
     public function logout(Request $request){
